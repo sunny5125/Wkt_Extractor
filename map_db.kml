@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<kml xmlns='http://www.opengis.net/kml/2.2'>-->
+<kml xmlns="http://earth.google.com/kml/2.1" xmlns:trails="http://www.google.com/kml/trails/1.0">
+<Document>
+<name>custom map</name>
+<description>custom</description>
+<Folder><name>Directions from  xxx to yyy</name><Placemark><name>Directions from  xxx to yyy</name><LineString><tessellate>1</tessellate><coordinates>87.27894000000003,23.5466,1.0 87.28041172027588,23.548251460987668,1.0 87.28238582611084,23.55013984055913,1.0</coordinates></LineString></Placemark><Placemark><name>xxx</name><Description>xxx</Description><ExtendedData/><Point><coordinates>87.27894000000003,23.5466,1.0</coordinates></Point></Placemark><Placemark><name>yyy</name><Description>yyyy</Description><ExtendedData/><Point><coordinates>87.28041172027588,23.548251460987668,1.0</coordinates></Point></Placemark></Folder></Document>
+</kml>

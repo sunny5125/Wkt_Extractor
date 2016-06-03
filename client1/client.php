@@ -87,7 +87,8 @@ socket_close($socket);
     <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>-->
         <script src="../kmltoosm.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?&signed_in=true&libraries=drawing,places"></script>
-        <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/routeboxer/src/RouteBoxer.js"></script>
+        <script type="text/javascript" src="js/RouteBoxer.js"></script>
+    	<script type="text/javascript" src="js/RouteBoxer_packed.js"></script>
         <script src="map_script.js"></script>
         <script>
             
