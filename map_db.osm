@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<osm version="0.6" upload="false" generator="uvmogr2osm">
+<node id="-2" lat="23.55226" lon="87.27822" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-3" lat="23.553837839" lon="87.278823853" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-4" lat="23.552933019" lon="87.280025482" visible="true" />
+<way id="-1" visible="true"><nd ref="-2" /><nd ref="-3" /><nd ref="-4" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+</osm>

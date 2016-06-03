@@ -1,0 +1,5 @@
+ osmosis --read-xml-0.5 enableDateParsing=no file="data.osm" --migrate --write-xml file="new.osm"
+
+ python osmparse.py
+
+ java -jar osm2wkt.jar new.osm

@@ -1,0 +1,22 @@
+Emergency Message stats for scenario default_scenario
+sim_time: 24000.1000
+created: 59
+started: 7171
+relayed: 7127
+aborted: 43
+dropped: 287
+removed: 6890
+delivered: 50
+delivery_prob: 0.8475
+response_prob: 0.0000
+overhead_ratio: 141.5400
+latency_avg: 441.5403
+latency_med: 165.2111
+hopcount_avg: 52.0000
+hopcount_med: 4
+buffertime_avg: 13.9143
+buffertime_med: 0.8000
+rtt_avg: NaN
+rtt_med: NaN
+Countable Msg : 59
+Delivered Within AT :25

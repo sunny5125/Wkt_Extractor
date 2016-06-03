@@ -1,0 +1,226 @@
+#
+# Default settings for the simulation
+#
+## Scenario settings
+Scenario.name = default_scenario
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+# 43k ~= 12h
+Scenario.endTime = 24000
+
+# "Bluetooth" interface for all nodes
+btInterface.type = SimpleBroadcastInterface
+# Transmit speed of 2 Mbps = 250kBps
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+wifiInterface.type = SimpleBroadcastInterface
+wifiInterface.transmitSpeed = 1024k
+wifiInterface.transmitRange =500
+
+DBInterface.type = SimpleBroadcastInterface
+DBInterface.transmitSpeed = 256k
+DBInterface.transmitRange = 200
+
+ADBInterface.type = SimpleBroadcastInterface
+ADBInterface.transmitSpeed = 2560k
+ADBInterface.transmitRange = 20
+
+SATInterface.type = SimpleBroadcastInterface
+SATInterface.transmitSpeed = 110k
+SATInterface.transmitRange = 20000
+
+SAT_CNInterface.type = SimpleBroadcastInterface
+SAT_CNInterface.transmitSpeed = 2500k
+SAT_CNInterface.transmitRange = 10
+
+CNInterface.type = SimpleBroadcastInterface
+CNInterface.transmitSpeed = 2560k
+CNInterface.transmitRange = 10
+
+##########number of host groups################
+Scenario.nrofHostGroups = 5
+###############################################
+ExternalMovement.file = ext_2clus.txt
+# common settings for all groups
+#Group.movementModel = ClusterMovement
+Group.router = EpidemicRouter
+Group.bufferSize = 5M
+Group.waitTime = 0, 120
+#All nodes have the firstinterface interface
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+# walking speeds
+Group.speed = 0.5, 1.5
+# Possion
+Group.clusterRange = 200
+
+#####################################################
+#UNICAST specific settings
+
+Group.mcs_message = N
+# node # of MCS
+Group.mcs_address=2
+Group.firstBT = 5
+Group.firstCD = 4
+Group.firstADB = 2
+#Group.firstSAT = 58
+Group.firstWIFI = 0
+# node id of the wifi of the group to which the cluster belongs
+Group.clusterWifi = 0
+#total data mules
+Group.DMS=1
+# non GCs visited by each dm
+Group.CD1= 0,1
+Group.firstSAT=0
+# Tags must be same as the groupID
+Group.bt_tag = p
+Group.cd_tag = CD
+Group.adb_tag = ADB_
+Group.sat_tag = SAT_
+Group.wifi_tag = WIFI_
+Group.stage1 = 64800
+Group.nodespc = 10
+Group.lamda = 20
+Group.threshold = 4
+# Starting and ending times of each warmup duration
+Group.stage_warmups = 0, 5000 , 64800 , 73400, 133200
+
+# Node number of the group center dropboxes
+# Dropboxes start from 19 to 37. So, 1 has ADB19 and 19 has ADB37
+# Centres for 200AT are 1,4,5,9,10,16
+Group.group_centers = 2
+
+
+
+
+
+#############################################
+
+
+
+#################################################################################
+#Centre
+Group1.groupID = DB
+Group1.nrofHosts = 2
+Group1.movementModel = ExternalMovement
+Group1.nrofInterfaces = 1
+Group1.interface1 = DBInterface
+###################################################################################
+##ActualDropBox
+Group2.groupID = ADB
+Group2.nrofHosts = 2
+Group2.movementModel = ExternalMovement
+Group2.nrofInterfaces = 3
+Group2.interface1 = ADBInterface
+Group2.interface2 = btInterface
+Group2.interface3 = CNInterface
+####################################################################################
+##CarrierDevice
+Group3.groupID = CD
+Group3.nrofHosts = 1
+Group3.movementModel = ExternalMovement
+Group3.nrofInterfaces = 2
+Group3.interface1 = CNInterface
+Group3.interface2 = SAT_CNInterface
+
+################################--2--###################################################
+
+###################################################################################
+
+#Cluster1
+	Group4.clusterCenter = 1050,700
+	Group4.dblocation = 1050,700
+	Group4.groupID = p1_
+	Group4.nrofHosts = 10
+	Group4.movementModel = ClusterMovement
+#	Group4.clusterStops = 3,3
+    Group4.nrofInterfaces = 1
+	Group4.interface1 = btInterface
+	Group4.activeTimes = 0,133200
+
+
+#Cluster2   cluster 2
+	Group5.clusterCenter = 1450,950
+	Group5.dblocation = 1450,950
+	Group5.groupID = p2_
+	Group5.nrofHosts = 10
+	Group5.movementModel = ClusterMovement
+#	Group5.clusterStops = 3,3
+    Group5.nrofInterfaces = 1
+	Group5.interface1 = btInterface
+	Group5.activeTimes = 0,133200
+
+
+## Message creation parameters 
+# How many event generators
+Events.nrof = 2
+# Class of the first event generator
+Events1.class = MessageEventGenerator
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 25,35
+# Message sizes (50kB - 150kB)
+Events1.size = 50k,150k
+# range of message source/destination addresses
+Events1.hosts = 5,24
+Events1.tohosts = 2,3
+# Message ID prefix
+Events1.prefix = M
+
+Events2.class = PossionMessageEventGenerator
+Events2.rate = 2
+Events2.interval = 20,21
+Events2.size = 1M,1M
+Events2.hosts = 2,3
+Events2.tohosts = 5,24
+Events2.prefix = N
+
+
+
+## Movement model settings
+# seed for movement models' pseudo random number generator (default = 0)
+MovementModel.rngSeed = 1
+# World's size for Movement Models without implicit size (width, height; meters)
+#MovementModel.worldSize = 4500, 3400
+MovementModel.worldSize = 3550, 3500
+# How long time to move hosts in the world before real simulation
+MovementModel.warmup = 1000
+
+# how many reports to load
+Report.nrofReports = 10
+Report.warmup = 0
+Report.reportDir = reports/2clus
+Report.report1 = MessageStatsReport
+Report.report2 = EventLogReport
+Report.report3 = CreatedMessagesReport
+Report.report4 = DeliveryProbReport
+Report.report5 = EmergencyMessageStatsReport
+Report.report6 = NormalMessageStatsReport
+Report.report7 = EMDeliveryProbReport
+Report.report8 = NMDeliveryProbReport
+Report.report9 = MCSMessageStatsReport
+Report.report10 =  DeliveredMessagesReport
+
+## Optimization settings -- these affect the speed of the simulation
+## see World class for details.
+Optimization.connectionAlg = 2
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+
+## GUI settings
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/nitdgp.png
+# Image offset in pixels (x, y)
+GUI.UnderlayImage.offset = 64, 20
+# Scaling factor for the image
+GUI.UnderlayImage.scale = 4.75
+# Image rotation (radians)
+GUI.UnderlayImage.rotate = -0.015
+
+# how many events to show in the log panel (default = 30)
+GUI.EventLogPanel.nrofEvents = 30
+# Regular Expression log filter (see Pattern-class from the Java API for RE-matching details)
+#GUI.EventLogPanel.REfilter = .*p[1-9]<->p[1-9]$

@@ -1,0 +1,5 @@
+Message stats for scenario default_scenario
+sim_time: 841.4000
+created: 451
+delivered: 107
+delivery_prob: 0.2373

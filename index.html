@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Resource Allocation Tool</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html,
+        body,
+        #map-canvas {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+        
+        #panel {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            margin-left: -180px;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+        }
+        
+        #bar {
+            width: 240px;
+            background-color: rgba(255, 255, 255, 0.75);
+            margin: 8px;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        #autoc {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        input[type="button"],
+        input[type="submit"] {
+            //display: block;
+            margin: 20px 10px;
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            //outline: 0 !important;
+            border: 0;
+            border-radius: 2px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        
+        #control input:hover {
+            background: dodgerblue;
+        }
+        
+        #msg {
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: sans-serif;
+            font-size: 14pt;
+            word-spacing: 0.5em;
+            letter-spacing: 0.1em;
+            background: rgb(136, 168, 199);
+            color: white;
+            padding: 5px 15px;
+            text-transform: uppercase;
+            //border: 2px solid rgba(0, 0, 0, 0.25);
+            border-left: none;
+            border-right: none;
+        }
+        
+        #form {
+            font-family: sans-serif;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-height: 80%;
+            //padding: 10px;
+            background: white;
+            border-radius: 3px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+        
+        #form .input {
+            display: block;
+            margin: 20px 0px;
+        }
+        
+        #form label {
+            width: 38%;
+            display: inline-block;
+        }
+        
+        #form input {
+            width: 60%;
+            border: none;
+            //display: block;
+            text-align: center;
+            border-bottom: 2px solid #88A8C7;
+            padding-bottom: 5px;
+        }
+        
+        #form input[type="submit"] {
+            display: inline-block;
+            margin: 0px;
+            width: 49%;
+        }
+        #form input[type="button"] {
+            width: 49%;
+            margin: 0px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!--
+    <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>-->
+    <script src="kmltoosm.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?&signed_in=true&libraries=drawing,places"></script>
+    <script type="text/javascript" src="js/routeboxer.js"></script>
+    <script src="map_script.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        var drawingManager;
+        var div_msg; // div showing msg
+        var btn_step; // button for next step
+        var btn_back; // button to undo
+        var overlay;
+        var rect = null; //selected rectangle area
+        var map_canvas; //div containing map
+        var map_extracted = false; // true if map has been extracted
+        var form = null; // config form
+
+        function initialize() {
+            var mapOptions = {
+                center: initMapCenter,
+                zoom: 15,
+                scaleControl: true
+            };
+
+            map_canvas = document.getElementById('map-canvas');
+            map = new google.maps.Map(map_canvas, mapOptions);
+
+            form = document.querySelector("#form");
+
+            overlay = new google.maps.OverlayView();
+            overlay.draw = function () {};
+            overlay.setMap(map);
+
+            //setting up autocomplete
+            map.controls[google.maps.ControlPosition.RIGHT_TOP].push(
+                document.getElementById('bar'));            
+            var autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autoc'));
+            autocomplete.bindTo('bounds', map);
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(15);
+                }
+            });
+            
+            //setting up control bar at bottom of page
+            var control = document.getElementById('control');
+            control.style.display = 'block';            map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(control);
+
+            //init start simulation button
+            var btn_ss = document.getElementById("btn-ss");
+            btn_ss.onclick = startSimulation;
+
+            //init stop direction button
+            var btn_sd = document.getElementById("btn-sd");
+            btn_sd.onclick = function () {
+                stopDirections = true;
+            };
+
+            //not implemented - read db locations from file
+            var btn_sp = document.getElementById("btn-sp");
+            btn_sp.onclick = function () {
+                var filechooser = document.getElementById("file");
+                filechooser.onchange = function (event) {
+                    if (event.target.files && event.target.files[0]) {
+                        //kmltoosm(event.target.files[0]);
+                        var reader = new FileReader();
+                        reader.onload = function () {
+                            var dataURL = reader.result;
+                            console.log(reader.result);
+                        };
+                        reader.readAsText(event.target.files[0]);
+                    }
+                };
+                filechooser.click();
+            }
+
+
+            //to calc one km lng diff
+            //console.log(calcDistanceInMeters(25, 25, 25, 25+point_interval) + " m");
+
+            //init error or status message div
+            div_msg = document.querySelector("#msg");
+            
+            //init next step button
+            btn_step = document.querySelector("#btn-step");
+            btn_step.onclick = function (ev) {
+                switchTask(true);
+            };
+            
+            //init prev step button
+            btn_back = document.querySelector("#btn-back");
+            btn_back.onclick = function (ev) {
+                switchTask(false);
+            };
+
+            // detect draw rectangle button and set onclick
+            //findRectButton();
+
+            //google.maps.event.addListener(map, 'click', addDB);
+        }
+
+        function switchTask(next) {
+
+            switch (currentTask) {
+            case "AREA":
+                if (next) {
+                    areaSelected();
+                    setTask("RECTANGLE");
+                }
+                break;
+            case "RECTANGLE":
+                if (!next) {
+                    can_draw_rectangle = false;
+                    drawing_rectangle = rectangle_complete = false;
+                    drawingManager.setMap(null);
+                    if (rect != null) {
+                        recInfoWindow.close();
+                        rect.setMap(null);
+                        rect = null;
+                    }
+                    setTask("AREA");
+                } else {
+                    if (rect == null) {
+                        drawing_rectangle = rectangle_complete = false;
+                        alert("Drag and Draw a rectangle");
+                        return false;
+                    }
+                    rectangleFixed();
+                    setTask("DB");
+                }
+                break;
+            case "DB":
+                if (!next) {
+                    if (dbmarkers.length > 0) {
+                        deleteLastDBMarker();
+                    } else {
+                        rect.setOptions({
+                            editable: true
+                        });
+                        drawingManager.setMap(null);
+                        setTask("RECTANGLE");
+                    }
+
+                } else {
+                    if (extractWKT()) {
+                        drawingManager.setMap(null);
+                        setTask("EXTRACT");
+                    }
+                }
+                break;
+            case "EXTRACT":
+                if (!next) {
+                    server_xmlhttp.abort();
+                    stopServer(false);
+                    setTask("DB");
+                } else {
+
+                    if (!map_extracted) {
+                        alert("Map not fully extracted. Cannot start Simulation");
+                        return;
+                    }
+                    showForm();
+
+                    //startSimulation();
+                }
+            }
+        }
+
+        var form_submit = null;
+
+        function showForm() {
+            form.style.display = "inline-block";
+            form.onsubmit = function (ev) {
+                var ttl = this["ttl"].value,
+                    msg_type = this["msg-type"].value,
+                    msg_gen = this["msg-gen"].value,
+                    buf_size = this["buf-size"].value;
+
+                startSimulation(ttl, msg_type, msg_gen, buf_size);
+
+                hideForm();
+                ev.preventDefault();
+                return false;
+            }
+            form["btn-cancel"].onclick = hideForm;
+        }
+
+        function hideForm() {
+            form.style.display = "none";
+        }
+
+        function deleteLastDBMarker() {
+            var index = dbmarkers.length - 1;
+            var marker = dbmarkers[index];
+            var circle = dbcircles[index];
+            marker.setMap(null);
+            circle.setMap(null);
+            dbmarkers.splice(index, 1);
+            dbcircles.splice(index, 1);
+        }
+
+        function setTask(task) {
+            var msg, value, task;
+            value = "NEXT";
+            switch (task) {
+            case "AREA":
+                msg = "SELECT AREA";
+                break;
+            case "RECTANGLE":
+                msg = "DRAW RECTANGLE";
+                break;
+            case "DB":
+                msg = "MARK DBs";
+                break;
+            case "EXTRACT":
+                msg = "EXTRACTING WKT...";
+                value = "SIMULATE";
+            }
+            currentTask = task;
+            div_msg.innerHTML = msg;
+            btn_step.value = value;
+        }
+        var currentTask = "AREA";
+
+        function areaSelected() {
+
+            drawingManager = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.RECTANGLE,
+                drawingControl: true,
+                drawingControlOptions: {
+                    //position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: [google.maps.drawing.OverlayType.RECTANGLE]
+                },
+                rectangleOptions: {
+                    fillColor: '#0000FF',
+                    fillOpacity: 0.1,
+                    strokeWeight: 2,
+                    clickable: true,
+                    editable: true,
+                    draggable: true
+                }
+            });
+            drawingManager.setMap(map);
+
+            can_draw_rectangle = true;
+            map_canvas.onmousedown = function (e) {
+                if (!can_draw_rectangle || rectangle_complete)
+                    return;
+
+                drawing_rectangle = true;
+
+                //console.log(e);
+                rec_topleft = overlay.getProjection().fromContainerPixelToLatLng(new google.maps.Point(e.offsetX, e.offsetY));
+
+                createRecInfoWindow(rec_topleft);
+                //console.log(coordinates.lat() + ", " + coordinates.lng());
+            };
+
+            map_canvas.onmousemove = function (e) {
+                if (drawing_rectangle) {
+                    var rec_bottomright = overlay.getProjection().fromContainerPixelToLatLng(new google.maps.Point(e.offsetX, e.offsetY));
+
+                    var sw = new google.maps.LatLng(rec_bottomright.lat(), rec_topleft.lng());
+                    var ne = new google.maps.LatLng(rec_topleft.lat(), rec_bottomright.lng());
+
+                    showRecInfoWindow(sw, ne);
+                }
+            };
+
+            google.maps.event.addDomListener(drawingManager, 'rectanglecomplete', function (rectangle) {
+
+                rectangle_complete = true;
+                drawing_rectangle = false;
+
+                rect = rectangle;
+
+                bounds = rectangle.getBounds();
+                //get the rectangle bounds
+                var ne = bounds.getNorthEast();
+                var sw = bounds.getSouthWest();
+                console.log(ne + " " + sw);
+
+                /**google.maps.event.addListener(rectangle, "bounds_changed", function() {
+                    alert(rectangle.getBounds());
+                });**/
+
+
+                drawingManager.setOptions({
+                    //drawingMode: google.maps.drawing.OverlayType.MARKER,
+                    drawingControl: true,
+                    drawingControlOptions: {
+                        position: google.maps.ControlPosition.TOP_CENTER,
+                        drawingModes: [google.maps.drawing.OverlayType.MARKER]
+                    }
+                });
+                drawingManager.setMap(null);
+                /*rectangle.setOptions({
+                    editable: false
+                });*/
+
+                rectangle.addListener('bounds_changed', function () {
+                    var ne = rectangle.getBounds().getNorthEast(),
+                        sw = rectangle.getBounds().getSouthWest();
+                    showRecInfoWindow(sw, ne);
+                });
+
+                original_sw = sw;
+                original_ne = ne;
+
+                /*
+                var btn_extractwkt = document.getElementById("btn-direction");
+                btn_extractwkt.onclick = function () {
+
+                    if (!calcDistanceMatrix())
+                        return;
+                    sendCoord(sw, ne);
+                    startServer(sw, ne);                    
+                    
+
+                    /*
+                    //addDirection();
+                    if (!calcDistanceMatrix())
+                        return;
+                    sendCoord(sw, ne);
+                    //recRunSnapToRoad(minlat, minlon, "left");
+
+                    //nextMakeGrid(sw, ne);
+
+                    makeGrid(sw, ne);
+                    
+                };*/
+
+                //google.maps.event.addListener(map, 'click', addDB);
+            });
+        }
+
+        function rectangleFixed() {
+            rect.setOptions({
+                editable: false,
+                draggable: false
+            });
+            drawingManager.setOptions({
+                drawingMode: google.maps.drawing.OverlayType.MARKER,
+                drawingControl: true,
+                drawingControlOptions: {
+                    //position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: [google.maps.drawing.OverlayType.MARKER]
+                }
+            });
+            drawingManager.setMap(map);
+
+            google.maps.event.addListener(drawingManager, 'markercomplete', function (marker) {
+                if (rect.getBounds().contains(marker.getPosition()))
+                    addDB(marker);
+                else
+                    marker.setMap(null);
+            });
+
+        }
+
+        function findRectButton() {
+            var btn_dr = document.getElementsByTagName("div");
+            for (var i = 0; i < btn_dr.length; i++) {
+                if (btn_dr[i].getAttribute("title") == "Draw a rectangle") {
+                    btn_dr = btn_dr[i];
+                    break;
+                }
+            }
+            console.log(btn_dr.length);
+            if (btn_dr.length > 1) {
+                setTimeout(findRectButton, 500);
+            } else {
+                console.log(btn_dr);
+                btn_dr.onclick = function () {
+                    this.style.display = "none";
+                    can_draw_rectangle = true;
+                };
+            }
+        }
+
+        function extractWKT() {
+            var rows = null,
+                cols = null;
+            rows = prompt("No. of Rows in Grid?", 1);
+            if (rows == null)
+                return false;
+            cols = prompt("No. of Cols in Grid?", 1);
+            if (cols == null)
+                return false;
+            rows = ((isNaN(rows) || rows < 0) ? 1 : rows);
+            cols = ((isNaN(cols) || cols < 0) ? 1 : cols);
+
+            if (!calcDistanceMatrix())
+                return false;
+            var bounds = rect.getBounds(),
+                sw = bounds.getSouthWest(),
+                ne = bounds.getNorthEast();
+            //calcMaxBoundaries(sw);
+            //calcMaxBoundaries(ne);
+            startServer(sw, ne, rows, cols, true);
+
+            return true;
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+</head>
+
+<body>
+    <div id="map-canvas"></div>
+    <div id="msg">Select Area</div>
+    <div id="bar">
+        <p class="auto">
+            <input type="text" id="autoc" />
+        </p>
+    </div>
+    <div id="control">
+        <!--<input id="btn-db" type="button" value="Write DB"/>
+        <input id="btn-dr" type="button" value="Draw Rectangle">-->
+        <input id="btn-back" type="button" value="BACK">
+        <input id="btn-step" type="button" value="NEXT">
+        <input id="btn-direction" type="button" value="Extract WKT" style="display:none">
+        <input id="btn-sd" type="button" value="Stop Directions" style="display:none">
+        <!--<input id="btn-kmltoosm" type="button" value="KML to OSM">-->
+        <input id="btn-ss" type="button" value="Start Simulation" style="display:none">
+        <input id="btn-r" type="button" value="Reset" onclick="window.location.reload();" style="display:none">
+        <input id="btn-sp" type="button" value="Shelter Points File" style="display:none">
+        <input id="file" type="file" style="visibility:hidden;display:none">
+        <!--<input id="btn-dm" type="button" value="Distance Matrix">-->
+    </div>
+    <form id="form">
+        <div class="input">
+            <label>TTL</label>
+            <input id="ttl" type="text" name="ttl" placeholder="TTL" value="20">
+        </div>
+        <div class="input">
+            <label>Message Type</label>
+            <input id="msg-type" type="text" name="msg-type" placeholder="Message Type" value="1">
+        </div>
+        <div class="input">
+            <label>Message Generation</label>
+            <input id="msg-gen" type="text" name="msg-gen" placeholder="Message Generation">
+        </div>
+        <div class="input">
+            <label>Buffer Size</label>
+            <input id="buf-size" type="text" nane="buf-size" placeholder="Buffer Size" value="2048M">
+        </div>
+        <input id="btn-simulate" type="submit" name="submit" value="SIMULATE">
+        <input id="btn-cancel" type="button" name="cancel" value="CANCEL">
+    </form>
+</body>
+
+</html>

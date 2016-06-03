@@ -1,0 +1,25 @@
+Execute the following command in the shell to compile and run the package:
+
+LINUX:
+
+./1click.sh
+
+
+##Input file should be stored in the muletrajectory/Input directory as input.txt
+
+##KruskalAlgorithm takes input.txt as input and generates a file mst.txt.
+
+##Graph.java reads the minimum spanning tree from mst.txt.
+
+## After the 1click.sh is run, one needs to enter the number of intervals( ie, latency intervals, a multiple of 60) to get the output in the console sorted by the latency..
+
+
+What does 1click.sh do?
+
+##It simply calls other bash scripts like delete_output.sh, compile.sh, run.sh and copyMuleInfo.sh
+
+#delete_output.sh deletes previous output files and mule info from muletrajectory/Output and muletrajectory/Mules
+
+#compile.sh compiles all the source codes( with .java extension) in muletrajectory/ and Input/
+
+#run.sh runs the KruskalAlgorithm class (to generate mst.txt) and unitTest.

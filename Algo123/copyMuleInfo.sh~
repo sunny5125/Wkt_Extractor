@@ -1,0 +1,2 @@
+rm -f ../Extscript/ExternalMovement/Mules/*
+cp muletrajectory/Mules/* ../Extscript/ExternalMovement/Mules/

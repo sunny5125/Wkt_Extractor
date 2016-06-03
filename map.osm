@@ -1,0 +1,59 @@
+<osm generator="uvmogr2osm" upload="false" version="0.6">
+<node id="-2" lat="23.55259" lon="87.27846" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-3" lat="23.55226" lon="87.27896" visible="true" />
+<node id="-4" lat="23.55288" lon="87.27934" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-5" lat="23.55314" lon="87.27949" visible="true" />
+<node id="-6" lat="23.55298" lon="87.27977" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-7" lat="23.55262" lon="87.27954" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-11" lat="23.55275" lon="87.27822" visible="true" />
+<node id="-12" lat="23.55294" lon="87.2784" visible="true" />
+<node id="-13" lat="23.55311" lon="87.27853" visible="true" />
+<node id="-14" lat="23.55325" lon="87.27861" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-18" lat="23.55353" lon="87.27873" visible="true" />
+<node id="-22" lat="23.55284" lon="87.28003" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-23" lat="23.55275" lon="87.28015" visible="true" />
+<node id="-24" lat="23.55254" lon="87.28042" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-28" lat="23.55377" lon="87.27857" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-29" lat="23.55365" lon="87.27879" visible="true" />
+<node id="-30" lat="23.55372" lon="87.27885" visible="true" />
+<node id="-31" lat="23.5538" lon="87.27896" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-32" lat="23.55375" lon="87.279" visible="true" />
+<node id="-33" lat="23.55352" lon="87.27942" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-37" lat="23.55337" lon="87.28045" visible="true" />
+<node id="-38" lat="23.55344" lon="87.28034" visible="true" />
+<node id="-39" lat="23.55346" lon="87.28033" visible="true" />
+<node id="-40" lat="23.55364" lon="87.28045" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-44" lat="23.55388" lon="87.27913" visible="true" />
+<node id="-45" lat="23.55394" lon="87.2793" visible="true" />
+<node id="-46" lat="23.55395" lon="87.27942" visible="true" />
+<node id="-47" lat="23.5539" lon="87.27964" visible="true" />
+<node id="-48" lat="23.55381" lon="87.28001" visible="true" />
+<node id="-49" lat="23.55382" lon="87.28004" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-50" lat="23.55387" lon="87.28009" visible="true" />
+<node id="-51" lat="23.55415" lon="87.28035" visible="true" />
+<node id="-52" lat="23.55434" lon="87.28065" visible="true" />
+<node id="-53" lat="23.55437" lon="87.28073" visible="true" />
+<node id="-54" lat="23.55438" lon="87.28081" visible="true" />
+<node id="-55" lat="23.55436" lon="87.28094" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-56" lat="23.55435" lon="87.28099" visible="true" />
+<node id="-60" lat="23.55385" lon="87.27985" visible="true"><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="xxx" /><tag k="timestamp" v="" /><tag k="tessellate" v="-1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></node>
+<node id="-61" lat="23.55424" lon="87.28014" visible="true" />
+<node id="-62" lat="23.55446" lon="87.2803" visible="true" />
+<node id="-63" lat="23.5548" lon="87.28063" visible="true" />
+<node id="-64" lat="23.55454" lon="87.28094" visible="true" />
+<node id="-65" lat="23.55452" lon="87.28096" visible="true" />
+<node id="-66" lat="23.55446" lon="87.28097" visible="true" />
+<node id="-70" lat="23.55351" lon="87.28008" visible="true" />
+<node id="-71" lat="23.5536" lon="87.28012" visible="true" />
+<node id="-72" lat="23.55366" lon="87.28013" visible="true" />
+<node id="-73" lat="23.55375" lon="87.28008" visible="true" />
+<way id="-1" visible="true"><nd ref="-2" /><nd ref="-3" /><nd ref="-4" /><nd ref="-5" /><nd ref="-6" /><nd ref="-7" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-10" visible="true"><nd ref="-2" /><nd ref="-11" /><nd ref="-12" /><nd ref="-13" /><nd ref="-14" /><nd ref="-4" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-17" visible="true"><nd ref="-14" /><nd ref="-18" /><nd ref="-6" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-21" visible="true"><nd ref="-6" /><nd ref="-22" /><nd ref="-23" /><nd ref="-24" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-27" visible="true"><nd ref="-28" /><nd ref="-29" /><nd ref="-30" /><nd ref="-31" /><nd ref="-32" /><nd ref="-33" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-36" visible="true"><nd ref="-22" /><nd ref="-37" /><nd ref="-38" /><nd ref="-39" /><nd ref="-40" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-43" visible="true"><nd ref="-31" /><nd ref="-44" /><nd ref="-45" /><nd ref="-46" /><nd ref="-47" /><nd ref="-48" /><nd ref="-49" /><nd ref="-50" /><nd ref="-51" /><nd ref="-52" /><nd ref="-53" /><nd ref="-54" /><nd ref="-55" /><nd ref="-56" /><nd ref="-40" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-59" visible="true"><nd ref="-60" /><nd ref="-61" /><nd ref="-62" /><nd ref="-63" /><nd ref="-64" /><nd ref="-65" /><nd ref="-66" /><nd ref="-55" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+<way id="-69" visible="true"><nd ref="-7" /><nd ref="-70" /><nd ref="-71" /><nd ref="-72" /><nd ref="-73" /><nd ref="-49" /><tag k="begin" v="" /><tag k="altitudeMode" v="" /><tag k="end" v="" /><tag k="Name" v="Directions from  xxx to yyy" /><tag k="timestamp" v="" /><tag k="tessellate" v="1" /><tag k="extrude" v="-1" /><tag k="visibility" v="-1" /><tag k="drawOrder" v="" /><tag k="icon" v="" /><tag k="description" v="" /></way>
+</osm>
